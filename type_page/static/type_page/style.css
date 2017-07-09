@@ -1,0 +1,121 @@
+body {
+
+    link: #116493 ;
+    vlink: #116493 ;
+    alink: #116493 ;
+
+}
+
+html {
+    background: #474747;
+    color: white;
+    font-size: 15px;
+    font-family: "Microsoft Sans Serif";
+
+}
+
+
+footer{
+    color: white;
+    clear: both;
+
+
+}
+
+div.logo{
+
+    font-size: 40px;
+    color: #2aabd2;
+
+}
+
+
+
+div#login {
+
+    background-color: #FFFF66;
+    width: 150px;
+    height: 50px;
+    border-radius: 20px;
+
+}
+
+a.login{
+
+    margin: auto;
+}
+
+div#login>a.link{
+
+    margin-bottom: 15px;
+    margin-left: 20px;
+    color:black;
+    font-size: 30px;
+    clear: both;
+
+}
+
+div#content{
+    margin: auto;
+    background-color: #2C2C2C;
+    height: 510px;
+    width: 1300px;
+}
+
+div.main>span{
+
+    font-size: 18px;
+    color:whitesmoke;
+}
+
+div#sign_up {
+
+    background-color: #FF4C00;
+    width: 200px;
+    height: 30px;
+    border-radius: 10px;
+    float: left;
+
+}
+
+div#sing_up>a.link{
+
+    color:black;
+    font-size: 30px;
+
+}
+
+div#sign_up{
+
+    background-color: whitesmoke;
+    float: left;
+
+}
+
+span#create {
+
+    margin: auto;
+    color: darkslategray;
+    font-size: 15px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+div#log {
+
+    margin-left: 20px;
+    height: 200px;
+    bl
+}
+
+div#new{
+    background-color: #1b6d85;
+    width: 200px;
+    height: 30px;
+    border-radius: 10px;
+
+}
+
+a.logout {
+    width: 60px;
+    background-color: #725a00;
+    color: #d0c18d;
+}

@@ -1,0 +1,98 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TYPER_DAMIX</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'type_page/style.css' %}">
+</head>
+<body>
+<div class="header">
+    <div class="logo"><a href ="{% url 'index' %}">TYPER_<STRONG>DAMIX</STRONG>.com - BEST TYPES EVER</a> </div><br><br>
+
+    {% if request.user.is_authenticated %}
+
+    USER : {{request.user}}<br>
+    <a class="link" href="{% url 'logout' %}">LOG OUT</a>
+
+    {% else %}
+
+    <a href="{% url 'create' %}" class="logout">CREATE NEW ACCOUNT</a>
+
+    {% block login %}
+    {% endblock %}
+
+
+    {%endif%}
+    <br>
+    <hr id="hr">
+
+</div>
+
+    <div id="content">
+
+        {% block create %}
+
+
+            <div class="main" >
+       <span>         <strong>Welcome to our website.</strong>
+
+        Actually we have types like:
+            <ul>
+                <li>ITF TENNIS</li>
+                <li>FOOTBALL DRAWS</li>
+            </ul>
+           You decide, what you prefer the most and see the history of our games.
+        </span>
+
+            </div>
+
+
+
+        <div id="tennis_a">
+    {% if request.user.is_authenticated %}
+
+            {% block tennis_a %}
+
+
+            {% endblock %}
+
+
+
+        <div class="tennis"id="history"><a class="link" href ="/tennis/history/">HISTORY</a></div>
+
+            {% else %}
+
+            <strong>TENNIS:</strong><span style ="color :red">SORRY.. ACCESS ONLY FOR LOGGED-IN USERS   :) </span>
+            {%endif%}
+        </div>
+{% if request.user.is_authenticated %}
+
+<div id="draw_a">
+
+{% block draw_a %}
+
+
+{% endblock %}
+
+
+        <div class="draw" id="history"><a class="link" href ="/draw/history/">HISTORY</a></div>
+{% else %}
+
+    <STRONG>DRAWS:</STRONG><span style="color: red ">SORRY..ACCESS ONLY FOR LOGGED-IN USERS   :) </span>
+    {%endif%}
+</div>
+
+{% endblock %}
+</div>
+<hr>
+<footer>
+    <br>
+    COPYRIGHT © 2017 TYPER_<strong>DAMIX</strong> - LUXURY SPORT TYPES
+</footer>
+
+</body>
+</html>
