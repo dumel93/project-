@@ -7,20 +7,24 @@
 <head>
     <meta charset="UTF-8">
     <title>TYPER_DAMIX</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'type_page/style.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'type_page/style.css' %}">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
 </head>
 <body>
 <div class="header">
-    <div class="logo"><a href ="{% url 'index' %}">TYPER_<STRONG>DAMIX</STRONG>.com - BEST TYPES EVER</a> </div><br><br>
+    <div class="logo"><a href ="{% url 'index' %}">TYPER_<STRONG>DAMIX</STRONG>.com - BEST TYPES EVER</a> </div><br>
 
     {% if request.user.is_authenticated %}
 
-    USER : {{request.user}}<br>
-    <a class="link" href="{% url 'logout' %}">LOG OUT</a>
+    USER : {{request.user}}<br><br>
+    <a class="btn btn-danger" href="{% url 'logout' %}">LOG OUT</a>
 
     {% else %}
 
-    <a href="{% url 'create' %}" class="logout">CREATE NEW ACCOUNT</a>
+    <a href="{% url 'create' %}" class="btn btn-success btn-sm" >CREATE NEW ACCOUNT</a><br><br>
 
     {% block login %}
     {% endblock %}
@@ -32,67 +36,75 @@
 
 </div>
 
-    <div id="content">
+    <div class="container">
 
-        {% block create %}
+            {% block create %}
+            {% block football %}
+
+                <div class="main" >
+                       <span>         <strong>Welcome to our website.</strong>
+
+                        Actually we have types like:
+                            <ul>
+                                <li>TENNIS</li>
+                                <li>FOOTBALL DRAWS</li>
+                            </ul>
+                           You decide, what you prefer the most and see the history of our games.
+                        </span><br>
+                                {% block user %}
+
+                                {% endblock %}
+                </div>
 
 
-            <div class="main" >
-       <span>         <strong>Welcome to our website.</strong>
 
-        Actually we have types like:
-            <ul>
-                <li>ITF TENNIS</li>
-                <li>FOOTBALL DRAWS</li>
-            </ul>
-           You decide, what you prefer the most and see the history of our games.
-        </span>
+            <div id="tennis_a">
+        {% if request.user.is_authenticated %}
+
+                {% block tennis_a %}
+
+
+                {% endblock %}
+
+
+            <br>
+            <div class="tennis"id="history">TENNIS: <a class="link" href ="/tennis/history/">SORRY..SOON :)</a></div><br><br>
+
+                {% else %}
+
+                    <strong>TENNIS:</strong><span style ="color :red">SORRY.. ACCESS ONLY FOR LOGGED-IN USERS   :) </span>
+                {%endif%}
+            </div>
+    {% if request.user.is_authenticated %}
+
+
+            <div class="arch draw"  >
+
+                    FOOTBALL DRAWS STATS :<br>
+
+                {% block draw %}
+
+
+                {% endblock %}<br>
+
+                <a class="btn btn-info btn-xs" href ="{% url 'draw-history' %}">DETAIL HISTORY</a></div>
 
             </div>
 
 
+    {% else %}
 
-        <div id="tennis_a">
-    {% if request.user.is_authenticated %}
+        <STRONG>DRAWS:</STRONG><span style="color: red ">SORRY..ACCESS ONLY FOR LOGGED-IN USERS   :) </span>
+        {%endif%}
+    </div>
 
-            {% block tennis_a %}
-
-
-            {% endblock %}
-
-
-
-        <div class="tennis"id="history"><a class="link" href ="/tennis/history/">HISTORY</a></div>
-
-            {% else %}
-
-            <strong>TENNIS:</strong><span style ="color :red">SORRY.. ACCESS ONLY FOR LOGGED-IN USERS   :) </span>
-            {%endif%}
-        </div>
-{% if request.user.is_authenticated %}
-
-<div id="draw_a">
-
-{% block draw_a %}
-
-
-{% endblock %}
-
-
-        <div class="draw" id="history"><a class="link" href ="/draw/history/">HISTORY</a></div>
-{% else %}
-
-    <STRONG>DRAWS:</STRONG><span style="color: red ">SORRY..ACCESS ONLY FOR LOGGED-IN USERS   :) </span>
-    {%endif%}
+    {% endblock %}
+    {% endblock %}
 </div>
 
-{% endblock %}
-</div>
+<div class="footer">
 <hr>
-<footer>
-    <br>
-    COPYRIGHT © 2017 TYPER_<strong>DAMIX</strong> - LUXURY SPORT TYPES
-</footer>
-
+    COPYRIGHT © 2017 DAMIX_TYPES
+</div>
 </body>
 </html>

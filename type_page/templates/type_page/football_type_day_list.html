@@ -1,0 +1,49 @@
+{% extends 'type_page/base.html' %}
+
+{% block football %}
+<div class="date">
+    <h1>HISTORY</h1><br><strong> {{ date_page }} </strong><br><br>
+</div>
+
+{% for bet in type %}
+
+        <div class="bet clearfix correct" style="border: solid 4px white">
+
+            <div class="title" style="border: solid 0.5px white; background-color: #404040 ">
+
+                <strong>{{ bet.first_team }} vs. {{ bet.second_team }}<br></strong>
+                <small>League, {{ bet.league }}<br>
+                    {{ bet.date_game }}</small>
+            </div>
+
+            <div>Bet:  {{ bet.bet }} unit </div>
+
+            <div>Course: {{ bet.course }}
+            </div>
+
+            <div>Total:   {{ bet.total }} units</div>
+            <br>
+
+        </div>
+
+    <br>
+
+    {% empty %}
+        DAY WITHOUT TYPES  <br>
+    {% endfor %}
+    <BR>
+    <div class="summary" style="background-color:#333333">
+        SUMMARY OF DAY : <br>
+
+        Bet: {{ sum }} units <br>
+        Total: <span class="tot">{{ total }} units / {{ yields }} %</span>
+    </div>
+
+<br><br>
+<a href="{% url 'draw-by-day-history' date_url=prev %}" class="btn-default" ><<<<<-  {{ prev }}</a>
+
+
+    <a href="{% url 'draw-by-day-history' date_url=next %}" class="btn-default ">{{ next }}   ->>>>></a>
+
+
+{% endblock %}

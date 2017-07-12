@@ -6,17 +6,17 @@ body {
 
 }
 
-html {
+body {
     background: #474747;
     color: white;
     font-size: 15px;
-    font-family: "Microsoft Sans Serif";
+
 
 }
 
 
 footer{
-    color: white;
+
     clear: both;
 
 
@@ -25,41 +25,24 @@ footer{
 div.logo{
 
     font-size: 40px;
-    color: #2aabd2;
+    color: #3498db;
 
 }
 
-
-
-div#login {
-
-    background-color: #FFFF66;
-    width: 150px;
-    height: 50px;
-    border-radius: 20px;
-
-}
 
 a.login{
 
     margin: auto;
 }
 
-div#login>a.link{
 
-    margin-bottom: 15px;
-    margin-left: 20px;
-    color:black;
-    font-size: 30px;
-    clear: both;
+div.container{
 
-}
+    background-color: #404040;
+    height: auto;
 
-div#content{
-    margin: auto;
-    background-color: #2C2C2C;
-    height: 510px;
-    width: 1300px;
+
+
 }
 
 div.main>span{
@@ -103,7 +86,7 @@ div#log {
 
     margin-left: 20px;
     height: 200px;
-    bl
+
 }
 
 div#new{
@@ -118,4 +101,34 @@ a.logout {
     width: 60px;
     background-color: #725a00;
     color: #d0c18d;
+
+}
+
+.bet{
+    height: 675px;
+    width: 165px;
+    border: solid 10px antiquewhite ;
+
+}
+
+
+
+.date > span.dat{
+    color: #2aabd2;
+}
+
+a.btn#y{
+    font-size: 30px !important;
+    color: #1b6d85 !important;
+}
+
+div.bet{
+
+    border: solid;
+
+}
+
+div.footer{
+
+    height: auto;
 }

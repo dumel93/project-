@@ -1,0 +1,48 @@
+{% extends 'type_page/base.html' %}
+
+{% block football %}
+<div class="date">
+    <h1>HISTORY</h1><br><strong>  {{ today }}  </strong><br><br>
+</div>
+
+{% for bet in type %}
+
+        <div class="bet" >
+
+            <div class="title">
+                {{ bet.first_team }} vs. {{ bet.second_team }}<br>
+                League, {{ bet.league }}<br>
+                    {{ bet.date_game }}
+            </div>
+
+            <div>Bet:  {{ bet.bet }} units </div>
+
+            <div>Course: {{ bet.course }}
+            </div>
+
+            <div>Total:   {{ bet.total }} units</div>
+            <br>
+        </div>
+
+
+
+    {% empty %}
+        NO MATCHES YET ..BE PATIENT ;) <br><br>
+    {% endfor %}
+<div class="summary" style="background-color:#333333">
+    SUMMARY OF DAY: <br>
+
+    Bet: {{ sum }} units <br>
+Total: <div id="total" >{{ total }} units / {{ yields }} %</div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<a href="{% url 'draw-by-day-history' date_url=yesterday %}" class="btn-default" id="y"><<<<<- {{ yesterday }}</a>
+
+{% endblock %}
+
+
+
+

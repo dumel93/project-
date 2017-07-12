@@ -1,3 +1,18 @@
+
+
 from django.contrib import admin
 
-# Register your models here.
+from .models import FootballType, User
+
+
+
+@admin.register(FootballType)
+class FootBallTypeAdmin(admin.ModelAdmin):
+
+    fields = ['first_team','second_team','date_game','draw','league','course','bet']
+
+
+@admin.register(User)
+class UserAdmin(admin.ModelAdmin):
+
+    list_display = ['username']

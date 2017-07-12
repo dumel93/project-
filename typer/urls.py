@@ -27,7 +27,13 @@ urlpatterns = [
     url(r'^index', views.TyperIndexView.as_view(), name="index"),
     url(r'^login/', views.UserLoginView.as_view(), name='login'),
     url(r'^logout/',views.UserLogoutView.as_view(), name='logout'),
-    url(r'^create/', views.UserCreateView.as_view(), name ='create')
+    url(r'^create/', views.UserCreateView.as_view(), name ='create'),
+    url(r'^draw_history/$', views.DrawHistoryView.as_view(), name ='draw-history'),
+    url(r'^draw_history/(?P<date_url>(\d{4}-\d{2}-\d{2}))', views.DrawHistoryDayView.as_view(),
+        name="draw-by-day-history"),
+
+
+
 
 
 
