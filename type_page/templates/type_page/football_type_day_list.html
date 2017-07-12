@@ -6,10 +6,11 @@
 </div>
 
 {% for bet in type %}
+        {% if bet.total >= 0 %}
+        <div class="bet_day_won" ">
 
-        <div class="bet clearfix correct" style="border: solid 4px white">
+            <div class="title" >
 
-            <div class="title" style="border: solid 0.5px white; background-color: #404040 ">
 
                 <strong>{{ bet.first_team }} vs. {{ bet.second_team }}<br></strong>
                 <small>League, {{ bet.league }}<br>
@@ -21,10 +22,34 @@
             <div>Course: {{ bet.course }}
             </div>
 
-            <div> <span class="total">Total:</span>   {{ bet.total }} units</div>
+            <div>Won:   <span style="color:yellowgreen">{{ bet.total }} units</span></div>
             <br>
 
         </div>
+{% endif %}
+
+
+{% if bet.total < 0 %}
+<div class="bet_day_lost" ">
+
+            <div class="title" >
+
+
+                <strong>{{ bet.first_team }} vs. {{ bet.second_team }}<br></strong>
+                <small>League, {{ bet.league }}<br>
+                    {{ bet.date_game }}</small>
+            </div>
+
+            <div>Bet:  {{ bet.bet }} unit </div>
+
+            <div>Course: {{ bet.course }}
+            </div>
+
+            <div>LOST:  <strong> <span style="color:darkred">{{ bet.total }} units</span></div></strong>
+
+        </div>
+
+{% endif %}
 
     <br>
 
@@ -33,11 +58,22 @@
     {% endfor %}
     <BR>
     <div class="summary" style="background-color:#333333">
-        SUMMARY OF DAY : <br>
+            {% if total >= 0 %}
+    SUMMARY OF DAY: <br>
 
-        Bet: {{ sum }} units <br>
-       <span class="total">Total:</span>  {{ total }} units / {{ yields }} %
-    </div>
+    Bet: {{ sum }} units <br>
+<span class="total">WON:</span> <span style="color:yellowgreen">{{ total }} units / {{ yields }} %</div></span>
+    {% endif %}
+<br>
+
+  {% if total < 0 %}
+    SUMMARY OF DAY: <br>
+
+    Bet: {{ sum }} units <br>
+<span class="total">LOST:</span> <span style="color:darkred">{{ total }} units / {{ yields }} %</div></span>
+    {% endif %}
+<br>
+
 
 <br><br>
 <a href="{% url 'draw-by-day-history' date_url=prev %}" class="btn-default" ><<<<<-  {{ prev }}</a>

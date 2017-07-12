@@ -64,6 +64,7 @@ class TyperIndexView(View):
         except ZeroDivisionError:
             accuracy_p=0
 
+
         ctx = {'form': form,
                "users": users,
                "this_year": this_year,

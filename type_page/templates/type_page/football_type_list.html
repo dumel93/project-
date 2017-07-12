@@ -7,9 +7,11 @@
 
 {% for bet in type %}
 
-        <div class="bet" style="border: solid 4px white">
+        {% if bet.total >= 0 %}
 
-            <div class="title" style="border: solid 0.5px white; background-color: #404040 ">
+        <div class="bet_day_won"  >
+
+            <div class="title" >
                 {{ bet.first_team }} vs. {{ bet.second_team }}<br>
                 League, {{ bet.league }}<br>
                     {{ bet.date_game }}
@@ -20,25 +22,61 @@
             <div>Course: {{ bet.course }}
             </div>
 
-            <div>Total:   {{ bet.total }} units</div>
+            <div>Won:   <span style="color:yellowgreen">{{ bet.total }} units</span></div>
 
         </div>
         <br>
+        {% endif %}
+
+
+
+        {% if bet.total < 0 %}
+
+        <div class="bet_day_lost"  >
+
+            <div class="title" >
+                {{ bet.first_team }} vs. {{ bet.second_team }}<br>
+                League, {{ bet.league }}<br>
+                    {{ bet.date_game }}
+            </div>
+
+            <div>Bet:  {{ bet.bet }} units </div>
+
+            <div>Course: {{ bet.course }}
+            </div>
+
+            <div>LOST:  <strong> <span style="color:darkred">{{ bet.total }} units</span></div></strong>
+
+        </div>
+        <br>
+        {% endif %}
+
 
 
     {% empty %}
         NO MATCHES YET ..BE PATIENT ;) <br><br>
     {% endfor %}
 <div class="summary" style="background-color:#333333">
+
+    {% if total >= 0 %}
     SUMMARY OF DAY: <br>
 
     Bet: {{ sum }} units <br>
-<span class="total">Total:</span> {{ total }} units / {{ yields }} %</div>
+<span class="total">WON:</span> <span style="color:yellowgreen">{{ total }} units / {{ yields }} %</div></span>
+    {% endif %}
+<br>
+
+  {% if total < 0 %}
+    SUMMARY OF DAY: <br>
+
+    Bet: {{ sum }} units <br>
+<span class="total">LOST:</span> <span style="color:darkred">{{ total }} units / {{ yields }} %</div></span>
+    {% endif %}
+<br>
+
 
 <br>
-<br>
-<br>
-<br>
+
 <a href="{% url 'draw-by-day-history' date_url=yesterday %}" class="btn-default" id="y"><<<<<- {{ yesterday }}</a>
 
 {% endblock %}

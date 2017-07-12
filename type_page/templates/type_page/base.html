@@ -45,11 +45,11 @@
                 <div class="main" >
                        <span>         <strong>Welcome to our website.</strong>
 
-                        Actually we have types like:
-                            <ul>
-                                <li>TENNIS</li>
-                                <li>FOOTBALL DRAWS</li>
-                            </ul>
+                        Actually we have types like:<br>
+
+                               1. TENNIS<br>
+                               2. FOOTBALL DRAWS<br>
+
                            You decide, what you prefer the most and see the history of our games.
                         </span><br>
                                 {% block user %}
@@ -79,9 +79,9 @@
     {% if request.user.is_authenticated %}
 
 
-            <div class="arch draw">
+            <div class="draw">
 
-                    FOOTBALL DRAWS STATS :<br>
+                <p style="font-size:25px"> FOOTBALL DRAWS STATS :</p>
 
                 {% block draw %}
 
