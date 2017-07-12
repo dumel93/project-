@@ -7,7 +7,7 @@ body {
 }
 
 body {
-    background: #474747;
+    background: #404040;
     color: white;
     font-size: 15px;
 
@@ -131,4 +131,12 @@ div.bet{
 div.footer{
 
     height: auto;
+}
+
+.month{
+
+    ttt;
+    border: solid 4px white;
+    padding-top: 30px;
+    color: red !important;
 }

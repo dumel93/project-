@@ -27,19 +27,22 @@ On our website we already have  <b><big>{{ users }}</big></b> users.
 
 
 <br>
-<div class="month" style="border:solid 2px white"><strong>{{ month }} {{ this_year }}</strong><br>
-Accuracy: <strong> {{ accuracy|floatformat:"1" }} %</strong> (<small> {{ draws_ok_t }} / {{ draws_t }} </small>)<br>
-Total: {{ sum_t }} units
-</div>
+<div class="month" ><strong>{{ month }} {{ this_year }}</strong><br>
+    Accuracy:<span class="m"> <strong> {{ accuracy|floatformat:"1" }} %</strong> </span>
+        (<small> {{ draws_ok_t }} / {{ draws_t }} </small>)<br>
+<span class="total">Total:</span> <span class="sum_t"> {{ sum_t }}</span> units
+</div><br>
 
 <div class="prev_month" style="border:solid 2px white"><strong>{{ prev_month_name }} {{ this_year }}</strong><br>
-Accuracy: <strong> {{ accuracy_p|floatformat:"1" }} %</strong> (<small> {{ draws_ok_p }} / {{ draws_p }} </small>)<br>
-Total: {{ sum_p }} units
+Accuracy:<span class="pm"> <strong> {{ accuracy_p|floatformat:"1" }} %</strong></span>
+        (<small> {{ draws_ok_p }} / {{ draws_p }} </small>)<br>
+    <span class="total">Total:</span> {{ sum_p }} units
 </div><br>
 
 <div class="year" style="border:solid 2px white; background-color:#333333"><strong>{{ this_year }}</strong><br>
-Accuracy: <strong> {{ accuracy_y|floatformat:"1" }} %</strong> (<small> {{ draws_ok_y }} / {{ draws_y }} </small>)<br>
-    Total: {{ sum_y }} units
+Accuracy:<span class="y"><strong> {{ accuracy_y|floatformat:"1" }} %</strong></span>
+    (<small> {{ draws_ok_y }} / {{ draws_y }} </small>)<br>
+<span class="total">Total:</span> {{ sum_y }} units
 </div>
 
 

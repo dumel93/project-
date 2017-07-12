@@ -7,9 +7,9 @@
 
 {% for bet in type %}
 
-        <div class="bet" >
+        <div class="bet" style="border: solid 4px white">
 
-            <div class="title">
+            <div class="title" style="border: solid 0.5px white; background-color: #404040 ">
                 {{ bet.first_team }} vs. {{ bet.second_team }}<br>
                 League, {{ bet.league }}<br>
                     {{ bet.date_game }}
@@ -21,9 +21,9 @@
             </div>
 
             <div>Total:   {{ bet.total }} units</div>
-            <br>
-        </div>
 
+        </div>
+        <br>
 
 
     {% empty %}
@@ -33,8 +33,8 @@
     SUMMARY OF DAY: <br>
 
     Bet: {{ sum }} units <br>
-Total: <div id="total" >{{ total }} units / {{ yields }} %</div>
-</div>
+<span class="total">Total:</span> {{ total }} units / {{ yields }} %</div>
+
 <br>
 <br>
 <br>
