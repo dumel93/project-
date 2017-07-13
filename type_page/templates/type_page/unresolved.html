@@ -3,26 +3,27 @@
 
 {% block unresolved %}
     <H1>UNRESOLVED TYPES</H1>
-
-            {% if unresolved_types %}
+<span>Current Time :  {{ now }}</span><br>
+            <br>
+        {% for type in unresolved_types %}
 
             <div class="bet_day_unresolved" style="border: 2px solid white">
 
                 <div class="title" >
-                    {{ unresolved_types.first_team }} vs. {{ unresolved_types.second_team }}<br>
-                    League, {{ unresolved_types.league }}<br>
-                        {{ unresolved_types.date_game }}
+                    {{ type.first_team }} vs. {{ type.second_team }}<br>
+                    League, {{ type.league }}<br>
+                        {{ type.date_game }}
                 </div>
 
-                <div>Bet:  {{ unresolved_types.bet }} units </div>
+                <div>Bet:  {{ type.bet }} units </div>
 
-                <div>Course: {{ unresolved_types.course }}
+                <div>Course: {{ type.course }}
                 </div>
 
-                <div>Predicted won: {{ unresolved_types.total }} units </div>
-                      {% if unresolved_types.comments %}  {{ unresolved_types.comments }}  {% endif %}
-            </div>
-            {% else %}
+                <div>Predicted won: {{ type.total }} units </div>
+                      {% if type.comments %}  {{ type.comments }}  {% endif %}
+            </div><br>
+            {% empty %}
                 THERE ARE NOT ANY MATCHES NOW  ..BE PATIENT ;)
-            {% endif %}
+            {% endfor %}
 {% endblock %}>

@@ -2,26 +2,30 @@
 
 
 {% block currently %}
-    <H1>CURRENTLY TYPES</H1>
-
-
+    <H2>CURRENTLY TYPES</H2>
+<span>Current Time :  {{ now }}</span><br>
+        <br>
+    {% for type in currently_types %}
 
             <div class="bet_day_currenlty" style="border: 2px solid white">
 
                 <div class="title" >
-                    {{ currently_types.first_team }} vs. {{ currently_types.second_team }}<br>
-                    League, {{ currently_types.league }}<br>
-                        {{ currently_types.date_game }}
+                    {{ type.first_team }} vs. {{ type.second_team }}<br>
+                    League, {{ type.league }}<br>
+                        {{ type.date_game }}
                 </div>
 
-                <div>Bet:  {{ currently_types.bet }} units </div>
+                <div>Bet:  {{ type.bet }} units </div>
 
-                <div>Course: {{ currently_types.course }}
+                <div>Course: {{ type.course }}
                 </div>
 
-                <div>Predicted won: {{ currently_types.total }} units </div>
-                      {% if currently_types.comments %}  {{ currently_types.comments }}  {% endif %}
-            </div>
+                <div>Predicted won: {{ type.total }} units </div>
+                      {% if type.comments %}  {{ type.comments }}  {% endif %}
+            </div><br>
+    {% empty %}
+        THERE ARE NOT ANY MATCHES IN THE FUTURE YET . . . JUST WAIT ;)
 
+    {% endfor %}
 
 {% endblock %}

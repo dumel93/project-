@@ -189,9 +189,22 @@ div.draw{
 
     width: 400px;
 }
+div.bet_day_currenlty{
+
+    width: 400px;
+}
 
 
+div.bet_day_last{
 
+    width: 400px;
+}
+
+
+div.bet_day_unresolved{
+
+    width: 400px;
+}
 
 
 div.bet_day_won{
@@ -223,4 +236,9 @@ div.create{
 
 div.col-md-offset-2{
     align-content: center;
+}
+
+div.bet_day_unresolved
+{
+    border: 2px solid whitesmoke;
 }

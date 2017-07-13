@@ -29,25 +29,29 @@ class TyperIndexView(View):
         prev_month_nb=this_month-1
         prev_month = datetime.strptime(str(prev_month_nb), '%m')
         prev_month_name=datetime.strftime(prev_month, '%B')
-        draws_ok_t=len(FootballType.objects.filter(date_game__range=[start, end], draw=True))
-        draws_t=len(FootballType.objects.filter(date_game__range=[start, end]))
+
+        draws_ok_t=len(FootballType.objects.filter(date_game__range=[start, end], draw=True).filter(is_ended=True))
+        draws_t=len(FootballType.objects.filter(date_game__range=[start, end]).filter(is_ended=True))
         sum_t=0
-        for types in FootballType.objects.filter(date_game__range=[start, end]).all():
+        for types in FootballType.objects.filter(date_game__range=[start, end]).filter(is_ended=True).all():
             sum_t += types.total
 
-        draws_ok_y = len(FootballType.objects.filter(date_game__year=this_year, draw=True))
-        draws_y = len(FootballType.objects.filter(date_game__year=this_year))
+        draws_ok_y = len(FootballType.objects.filter(date_game__year=this_year, draw=True).filter(is_ended=True))
+        draws_y = len(FootballType.objects.filter(date_game__year=this_year).filter(is_ended=True))
         sum_y=0
-        for types_y in FootballType.objects.filter(date_game__year=this_year).all():
+        for types_y in FootballType.objects.filter(date_game__year=this_year).filter(is_ended=True).all():
             sum_y += types_y.total
 
         draws_ok_p = len(FootballType.objects.filter(date_game__range=[date(this_year, this_month-1, 1),
-                                                                       date(this_year, this_month-1, 30)], draw=True))
+                                                                       date(this_year, this_month-1, 30)], draw=True)
+                         .filter(is_ended=True))
         draws_p = len(FootballType.objects.filter(date_game__range=[date(this_year, this_month-1, 1),
-                                                                       date(this_year, this_month-1, 30)]))
+                                                                       date(this_year, this_month-1, 30)])
+                      .filter(is_ended=True))
         sum_p = 0
         for types in FootballType.objects.filter(date_game__range=[date(this_year, this_month-1, 1),
-                                                                       date(this_year, this_month-1, 30)]).all():
+                                                                       date(this_year, this_month-1, 30)])\
+                .filter(is_ended=True).all():
             sum_p += types.total
 
         try:
@@ -206,21 +210,21 @@ class DrawLastTypesView(View):
             last_type=last_types[0]
             ctx = {"last_type": last_type}
             return render(request, 'type_page/last_added.html', ctx)
-        except Exception:
+        except IndexError:
             return render(request, 'type_page/exception.html')
+
 
 class DrawCurrentlyTypesView(View):
 
     def get(self,request):
-        currently_types=FootballType.objects.filter(is_ended=False).all()
-        now=datetime.now()
-        unresolved_types=FootballType.objects.filter(date_game__lte=now).filter(is_ended=False)
+        now = datetime.now()
+        currently_types=FootballType.objects.filter(is_ended=False).filter(date_game__gte=now)
+        return render(request, 'type_page/currently.html', {"currently_types":currently_types,"now":now})
 
-        return render(request, 'type_page/currently.html', {"currently_types":currently_types})
-
+    
 class DrawUnresolvedTypesView(View):
 
     def get(self,request):
         now = datetime.now()
-        unresolved_types = FootballType.objects.filter(date_game__gte=now).filter(is_ended=False)
-        return render(request, 'type_page/unresolved.html', {"unresolved_types": unresolved_types})
+        unresolved_types = FootballType.objects.filter(is_ended=False).filter(date_game__lte=now)
+        return render(request, 'type_page/unresolved.html', {"unresolved_types": unresolved_types,"now":now})
