@@ -21,19 +21,26 @@ class FootballType(models.Model):
     course=models.DecimalField(max_digits=5,decimal_places=2)
     comments=models.CharField(max_length=128, null=True)
     bet=models.IntegerField()
-
+    retired=models.BooleanField(default=False)
 
 
     class Meta :
         ordering=['date_game']
 
 
+
+
     @property
     def total(self):
+
+
         if self.is_ended == True:
-            if self.draw == True:
-                return self.bet*(self.course-1)
-            return (self.bet)*(-1)
+            if self.retired == False:
+                if self.draw == True:
+                    return self.bet*(self.course-1)
+                return (self.bet)*(-1)
+            else:
+                return 0
         return self.bet*(self.course-1)
 
 

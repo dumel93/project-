@@ -11,7 +11,7 @@
     {% for bet in type %}
 
 
-        {% if bet.total >= 0  %}
+        {% if bet.total > 0  %}
 
         <div class="bet_day_won"  >
 
@@ -54,6 +54,30 @@
         </div>
         <br>
         {% endif %}
+
+
+
+         {% if bet.total == 0 %}
+
+        <div class="bet_day_retired" style="width: 400px ; border:4px solid #9999FF">
+
+            <div class="title" >
+                {{ bet.first_team }} vs. {{ bet.second_team }}<br>
+                League, {{ bet.league }}<br>
+                    {{ bet.date_game }}
+            </div>
+
+            <div>Bet:  {{ bet.bet }} units </div>
+
+            <div>Course: {{ bet.course }}
+            </div>
+
+            <div>Nothing happened:  <strong> {{ bet.total }} units</span></div></strong>
+                 {% if bet.comments %}  {{bet.comments}}  {% endif %}
+        </div>
+        <br>
+        {% endif %}
+
 
 
 

@@ -10,7 +10,7 @@ from .models import FootballType, User
 class FootBallTypeAdmin(admin.ModelAdmin):
 
 
-    fields = ['first_team','second_team','date_game','draw','league','course','bet','is_ended']
+    fields = ['first_team','second_team','date_game','draw','league','course','bet','is_ended','retired']
 
 
 

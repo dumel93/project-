@@ -23,6 +23,8 @@ footer{
 
 }
 
+
+
 div.logo{
 
     font-size: 40px;
@@ -155,10 +157,6 @@ div.footer{
 
 
 
-
-
-
-
 .month_lost{
 
     border: solid 4px darkred;
@@ -206,12 +204,21 @@ div.bet_day_unresolved{
     width: 400px;
 }
 
+div.bet_day_retired{
+
+    width: 400px;
+    border: solid 4px mediumblue;
+}
+
+
 
 div.bet_day_won{
 
     width: 400px;
     border: solid 4px greenyellow;
 }
+
+
 
 div.summary{
 
