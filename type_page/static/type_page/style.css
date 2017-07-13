@@ -1,21 +1,18 @@
 body {
 
     link: #116493 ;
-    vlink: #116493 ;
-    alink: #116493 ;
+  ;
 
 }
 
 body {
     background: #474747;
-    color: white;
+    color: #2aabd2 ;
     font-size: 15px;
     text-align: left;
     padding-left: 30px;
     padding-top: 30px;
     padding-bottom: 20px;
-
-
 
 }
 
@@ -23,7 +20,6 @@ body {
 footer{
 
     clear: both;
-
 
 }
 
@@ -45,7 +41,7 @@ div.container{
 
     background-color: #404040;
     height: auto;
-
+    color: white;
 
 
 }
@@ -62,7 +58,7 @@ div#sign_up {
     width: 200px;
     height: 30px;
     border-radius: 10px;
-    float: left;
+
 
 }
 
@@ -76,7 +72,6 @@ div#sing_up>a.link{
 div#sign_up{
 
     background-color: whitesmoke;
-    float: left;
 
 }
 
@@ -140,10 +135,6 @@ div.footer{
 }
 
 
-
-
-
-
 .month_won{
 
     border: solid 4px greenyellow;
@@ -199,6 +190,10 @@ div.draw{
     width: 400px;
 }
 
+
+
+
+
 div.bet_day_won{
 
     width: 400px;
@@ -218,4 +213,14 @@ div.bet_day_lost{
 
     width: 400px;
     border: solid 4px darkred;
+}
+
+div.create{
+
+    color: #3498db;
+    width: 540px;
+}
+
+div.col-md-offset-2{
+    align-content: center;
 }

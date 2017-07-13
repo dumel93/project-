@@ -132,7 +132,7 @@ class DrawHistoryView(View):
     def get(self, request):
         today = date.today()
         yesterday = today - timedelta(1)
-        type = FootballType.objects.filter(date_game__icontains=today)
+        type = FootballType.objects.filter(date_game__icontains=today).filter(is_ended=True)
 
         sum = 0
         for bet_day in type:
@@ -145,6 +145,8 @@ class DrawHistoryView(View):
 
         except ZeroDivisionError:
             yields = 0
+
+
 
         ctx = {'type': type,
                'sum': sum,
@@ -165,7 +167,7 @@ class DrawHistoryDayView(View):
         prev = date_page - timedelta(1)
         next = date_page + timedelta(1)
 
-        type = FootballType.objects.filter(date_game__icontains=date_url)
+        type = FootballType.objects.filter(date_game__icontains=date_url).filter(is_ended=True)
 
         sum = 0
         for bet_day in type:
@@ -194,4 +196,31 @@ class DrawHistoryDayView(View):
 
         return render(request, 'type_page/football_type_day_list.html', ctx)
 
+class DrawLastTypesView(View):
 
+    def get(self,request):
+        now = datetime.now()
+        last_types=FootballType.objects.order_by('-id').filter(is_ended=False).filter(date_game__gte=now)
+
+        try:
+            last_type=last_types[0]
+            ctx = {"last_type": last_type}
+            return render(request, 'type_page/last_added.html', ctx)
+        except Exception:
+            return render(request, 'type_page/exception.html')
+
+class DrawCurrentlyTypesView(View):
+
+    def get(self,request):
+        currently_types=FootballType.objects.filter(is_ended=False).all()
+        now=datetime.now()
+        unresolved_types=FootballType.objects.filter(date_game__lte=now).filter(is_ended=False)
+
+        return render(request, 'type_page/currently.html', {"currently_types":currently_types})
+
+class DrawUnresolvedTypesView(View):
+
+    def get(self,request):
+        now = datetime.now()
+        unresolved_types = FootballType.objects.filter(date_game__gte=now).filter(is_ended=False)
+        return render(request, 'type_page/unresolved.html', {"unresolved_types": unresolved_types})

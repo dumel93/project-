@@ -3,11 +3,15 @@
 {% block football %}
 <div class="date">
     <h1>HISTORY</h1><br><strong>  {{ today }}  </strong><br><br>
+
 </div>
 
-{% for bet in type %}
 
-        {% if bet.total >= 0 %}
+
+    {% for bet in type %}
+
+
+        {% if bet.total >= 0  %}
 
         <div class="bet_day_won"  >
 
@@ -23,7 +27,7 @@
             </div>
 
             <div>Won:   <span style="color:yellowgreen">{{ bet.total }} units</span></div>
-
+                  {% if bet.comments %}  {{bet.comments}}  {% endif %}
         </div>
         <br>
         {% endif %}
@@ -46,7 +50,7 @@
             </div>
 
             <div>LOST:  <strong> <span style="color:darkred">{{ bet.total }} units</span></div></strong>
-
+                 {% if bet.comments %}  {{bet.comments}}  {% endif %}
         </div>
         <br>
         {% endif %}
@@ -56,6 +60,8 @@
     {% empty %}
         NO MATCHES YET ..BE PATIENT ;) <br><br>
     {% endfor %}
+
+
 <div class="summary" style="background-color:#333333">
 
     {% if total >= 0 %}
@@ -75,7 +81,6 @@
 <br>
 
 
-<br>
 
 <a href="{% url 'draw-by-day-history' date_url=yesterday %}" class="btn-default" id="y"><<<<<- {{ yesterday }}</a>
 

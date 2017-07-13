@@ -32,3 +32,4 @@ class UserCreateForm(UserCreationForm):
             'last_name', 'email',
             'password1', 'password2',
         ]
+

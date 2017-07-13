@@ -1,0 +1,32 @@
+{% extends 'type_page/base.html' %}
+
+
+{% block last %}
+
+
+
+
+    <H2>LAST ADDED TYPE</H2><br>
+
+
+
+            <div class="bet_day_last" style="border: 2px solid white">
+
+                <div class="title" >
+                    {{ last_type.first_team }} vs. {{ last_type.second_team }}<br>
+                    League, {{ last_type.league }}<br>
+                       Start time: {{ last_type.date_game }}
+                </div>
+
+                <div>Bet:  {{ last_type.bet }} units </div>
+
+                <div>Course: {{ last_type.course }}
+                </div>
+
+                <div>Predicted won: {{ last_type.total }} units </div>
+                      {% if last_type.comments %}  {{last_type.comments}}  {% endif %}
+            </div>
+
+
+
+{% endblock %}

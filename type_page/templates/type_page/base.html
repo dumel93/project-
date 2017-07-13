@@ -3,7 +3,7 @@
 
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>TYPER_DAMIX</title>
@@ -11,14 +11,17 @@
 
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="{% static 'type_page/app.js'%}"></script>
+        <script src="{% static 'type_page/app.js' %}">
+
+        </script>
     <link rel="stylesheet" href="{% static 'type_page/style.css' %}">
 </head>
 <body>
 <div class="header">
-    <div class="logo"><a href ="{% url 'index' %}">TYPER_<STRONG>DAMIX</STRONG>.com - BEST TYPES EVER</a> </div><br>
+    <div class="logo"><a class="click2" href ="{% url 'index' %}">TYPER_<STRONG>DAMIX</STRONG>.com - BEST TYPES EVER</a> </div><br>
 
     {% if request.user.is_authenticated %}
+
 
     USER : {{request.user}}<br><br>
     <a class="btn btn-danger" href="{% url 'logout' %}">LOG OUT</a>
@@ -39,6 +42,10 @@
 
     <div class="container">
 
+            {% block last %}
+            {% block ex %}
+            {% block currenlty %}
+            {% block unresolved %}
             {% block create %}
             {% block football %}
 
@@ -88,24 +95,38 @@
 
                 {% endblock %}<br>
 
-                <a class="btn btn-info btn-xs" href ="{% url 'draw-history' %}">DETAIL HISTORY</a></div>
+
+
+            </div><br>
+
+                   <div class="col-md-offset-2" >
+
+            <a  href="{% url 'last-added' %}" class ="btn btn-warning btn-lg"> LAST ADDED  </a>
+            <a  href="{% url 'currently' %}"  class ="btn btn-warning btn-lg"> CURRENTLY </a>
+            <a  href="{% url 'unresolved' %}" class ="btn btn-warning btn-lg"> UNRESOLVED </a>
+            <a   href="{% url 'draw-history' %}" class ="btn btn-warning btn-lg "> ARCHIVES </a>
 
             </div>
-
 
     {% else %}
 
         <STRONG>DRAWS:</STRONG><span style="color: red ">SORRY..ACCESS ONLY FOR LOGGED-IN USERS   :) </span>
         {%endif%}
     </div>
+    {% endblock %}
+    {% endblock %}
+    {% endblock %}
+    {% endblock %}
+    {% endblock %}
+    {% endblock %}
 
-    {% endblock %}
-    {% endblock %}
 </div>
 
 <div class="footer">
 <hr>
     COPYRIGHT © 2017 DAMIX_TYPES
 </div>
+
+
 </body>
 </html>

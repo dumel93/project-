@@ -31,11 +31,9 @@ urlpatterns = [
     url(r'^draw_history/$', views.DrawHistoryView.as_view(), name ='draw-history'),
     url(r'^draw_history/(?P<date_url>(\d{4}-\d{2}-\d{2}))', views.DrawHistoryDayView.as_view(),
         name="draw-by-day-history"),
-
-
-
-
-
+    url(r'^last_added', views.DrawLastTypesView.as_view(), name="last-added"),
+    url(r'^currently', views.DrawCurrentlyTypesView.as_view(), name="currently"),
+    url(r'^unresolved', views.DrawUnresolvedTypesView.as_view(), name="unresolved"),
 
 
 

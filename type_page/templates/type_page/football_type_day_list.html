@@ -23,6 +23,7 @@
             </div>
 
             <div>Won:   <span style="color:yellowgreen">{{ bet.total }} units</span></div>
+ {% if bet.comments %}  {{bet.comments}}  {% endif %}
             <br>
 
         </div>
@@ -46,6 +47,7 @@
             </div>
 
             <div>LOST:  <strong> <span style="color:darkred">{{ bet.total }} units</span></div></strong>
+{% if bet.comments %} <p style="font-size:10px"> {{bet.comments}} </p> {% endif %}
 
         </div>
 

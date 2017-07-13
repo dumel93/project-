@@ -9,7 +9,9 @@ from .models import FootballType, User
 @admin.register(FootballType)
 class FootBallTypeAdmin(admin.ModelAdmin):
 
-    fields = ['first_team','second_team','date_game','draw','league','course','bet']
+
+    fields = ['first_team','second_team','date_game','draw','league','course','bet','is_ended']
+
 
 
 @admin.register(User)

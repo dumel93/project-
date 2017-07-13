@@ -1,0 +1,28 @@
+{% extends 'type_page/base.html' %}
+
+
+{% block unresolved %}
+    <H1>UNRESOLVED TYPES</H1>
+
+            {% if unresolved_types %}
+
+            <div class="bet_day_unresolved" style="border: 2px solid white">
+
+                <div class="title" >
+                    {{ unresolved_types.first_team }} vs. {{ unresolved_types.second_team }}<br>
+                    League, {{ unresolved_types.league }}<br>
+                        {{ unresolved_types.date_game }}
+                </div>
+
+                <div>Bet:  {{ unresolved_types.bet }} units </div>
+
+                <div>Course: {{ unresolved_types.course }}
+                </div>
+
+                <div>Predicted won: {{ unresolved_types.total }} units </div>
+                      {% if unresolved_types.comments %}  {{ unresolved_types.comments }}  {% endif %}
+            </div>
+            {% else %}
+                THERE ARE NOT ANY MATCHES NOW  ..BE PATIENT ;)
+            {% endif %}
+{% endblock %}>

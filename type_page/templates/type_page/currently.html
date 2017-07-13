@@ -1,0 +1,27 @@
+{% extends 'type_page/base.html' %}
+
+
+{% block currently %}
+    <H1>CURRENTLY TYPES</H1>
+
+
+
+            <div class="bet_day_currenlty" style="border: 2px solid white">
+
+                <div class="title" >
+                    {{ currently_types.first_team }} vs. {{ currently_types.second_team }}<br>
+                    League, {{ currently_types.league }}<br>
+                        {{ currently_types.date_game }}
+                </div>
+
+                <div>Bet:  {{ currently_types.bet }} units </div>
+
+                <div>Course: {{ currently_types.course }}
+                </div>
+
+                <div>Predicted won: {{ currently_types.total }} units </div>
+                      {% if currently_types.comments %}  {{ currently_types.comments }}  {% endif %}
+            </div>
+
+
+{% endblock %}
