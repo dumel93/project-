@@ -6,7 +6,7 @@ from .models import FootballType, User
 @admin.register(FootballType)
 class FootBallTypeAdmin(admin.ModelAdmin):
     fields = ['first_team', 'second_team', 'date_game', 'retired',
-              'draw', 'league', 'course', 'bet', 'is_ended', 'comments']
+              'draw', 'league','bet', 'course',  'is_ended', 'comments']
     list_display = ['__str__', 'date_game', 'is_ended', 'id']
 
 

@@ -22,7 +22,7 @@ class FootballType(models.Model):
     retired = models.BooleanField(default=False)
 
     class Meta:
-        ordering = ['date_game']
+        ordering = ['-date_game']
 
     @property
     def total(self):
