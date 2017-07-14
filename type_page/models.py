@@ -1,6 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-
+from .validators import validate_bet,validate_course
 # Create your models here.
 
 class User(AbstractUser):
@@ -18,9 +18,9 @@ class FootballType(models.Model):
     is_ended=models.BooleanField(default=False)
     date_game= models.DateTimeField()
     league= models.CharField(max_length=64)
-    course=models.DecimalField(max_digits=5,decimal_places=2)
+    course=models.DecimalField(max_digits=5,decimal_places=2,validators=[validate_course])
     comments=models.CharField(max_length=128, null=True)
-    bet=models.IntegerField()
+    bet=models.IntegerField(validators=[validate_bet])
     retired=models.BooleanField(default=False)
 
 
@@ -28,11 +28,8 @@ class FootballType(models.Model):
         ordering=['date_game']
 
 
-
-
     @property
     def total(self):
-
 
         if self.is_ended == True:
             if self.retired == False:

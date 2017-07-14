@@ -18,6 +18,7 @@ class TyperIndexView(View):
     def get(self, request):
         form = UserLoginForm()
         users = User.objects.count() - 1
+
         now=datetime.now()
         this_year = datetime.now().year
         this_month = datetime.now().month
@@ -116,7 +117,6 @@ class TyperIndexView(View):
                "accuracy": accuracy,
                "accuracy_y": accuracy_y,
                "accuracy_p": accuracy_p,
-               "prev_month": prev_month,
                "prev_month_name": prev_month_name,
                "yields_t": yields_t,
                "yields_p": yields_p,
