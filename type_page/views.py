@@ -242,7 +242,6 @@ class DrawLastTypesView(View):
     def get(self,request):
         now = datetime.now()
         last_types=FootballType.objects.order_by('-id').filter(is_ended=False).filter(date_game__gte=now)
-
         try:
             last_type=last_types[0]
             ctx = {"last_type": last_type}
