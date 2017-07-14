@@ -13,63 +13,61 @@ class TyperBaseView(View):
 
 
 class TyperIndexView(View):
-
-
     def get(self, request):
         form = UserLoginForm()
         users = User.objects.count() - 1
 
-        now=datetime.now()
+        now = datetime.now()
         this_year = datetime.now().year
         this_month = datetime.now().month
         today = datetime.now()
-        month=today.strftime("%B")
+        month = today.strftime("%B")
         start = date(this_year, this_month, 1)
         end = date(this_year, this_month, 30)
 
-        prev_month_nb=this_month-1
+        prev_month_nb = this_month - 1
         prev_month = datetime.strptime(str(prev_month_nb), '%m')
-        prev_month_name=datetime.strftime(prev_month, '%B')
+        prev_month_name = datetime.strftime(prev_month, '%B')
 
-        draws_ok_t=len(FootballType.objects.filter(date_game__range=[start, end]).filter(draw=True).filter(is_ended=True))
-        draws_t=len(FootballType.objects.filter(date_game__range=[start, end]).filter(is_ended=True))
-        sum_t=0
+        draws_ok_t = len(
+            FootballType.objects.filter(date_game__range=[start, end]).filter(draw=True).filter(is_ended=True))
+        draws_t = len(FootballType.objects.filter(date_game__range=[start, end]).filter(is_ended=True))
+        sum_t = 0
         for types in FootballType.objects.filter(date_game__range=[start, end]).filter(is_ended=True):
             sum_t += types.bet
 
         draws_ok_y = len(FootballType.objects.filter(date_game__year=this_year, draw=True).filter(is_ended=True))
         draws_y = len(FootballType.objects.filter(date_game__year=this_year).filter(is_ended=True))
 
-        sum_y=0
+        sum_y = 0
         for types_y in FootballType.objects.filter(date_game__year=this_year).filter(is_ended=True).all():
             sum_y += types_y.bet
 
-        draws_ok_p = len(FootballType.objects.filter(date_game__range=[date(this_year, this_month-1, 1),
-                                                                       date(this_year, this_month-1, 30)], draw=True)
+        draws_ok_p = len(FootballType.objects.filter(date_game__range=[date(this_year, this_month - 1, 1),
+                                                                       date(this_year, this_month - 1, 30)], draw=True)
                          .filter(is_ended=True))
-        draws_p = len(FootballType.objects.filter(date_game__range=[date(this_year, this_month-1, 1),
-                                                                       date(this_year, this_month-1, 30)])
+        draws_p = len(FootballType.objects.filter(date_game__range=[date(this_year, this_month - 1, 1),
+                                                                    date(this_year, this_month - 1, 30)])
                       .filter(is_ended=True))
         sum_p = 0
-        for types_p in FootballType.objects.filter(date_game__range=[date(this_year, this_month-1, 1),
-                                                                       date(this_year, this_month-1, 30)])\
+        for types_p in FootballType.objects.filter(date_game__range=[date(this_year, this_month - 1, 1),
+                                                                     date(this_year, this_month - 1, 30)]) \
                 .filter(is_ended=True):
             sum_p += types_p.bet
 
         try:
-            accuracy= round(100*draws_ok_t/draws_t)
+            accuracy = round(100 * draws_ok_t / draws_t)
         except ZeroDivisionError:
             accuracy = 0
 
         try:
-            accuracy_y=round(100*draws_ok_y/draws_y)
+            accuracy_y = round(100 * draws_ok_y / draws_y)
         except ZeroDivisionError:
             accuracy_y = 0
         try:
-            accuracy_p=round(100*draws_ok_p/draws_p)
+            accuracy_p = round(100 * draws_ok_p / draws_p)
         except ZeroDivisionError:
-            accuracy_p=0
-
+            accuracy_p = 0
 
         total_t = 0
         for total_day_t in FootballType.objects.filter(date_game__range=[start, end]).filter(is_ended=True):
@@ -81,15 +79,15 @@ class TyperIndexView(View):
             yields_t = 0
 
         total_p = 0
-        for total_day_p in FootballType.objects.filter(date_game__range=[date(this_year, this_month-1, 1),
-                                                                       date(this_year, this_month-1, 30)]).filter(is_ended=True):
+        for total_day_p in FootballType.objects.filter(date_game__range=[date(this_year, this_month - 1, 1),
+                                                                         date(this_year, this_month - 1, 30)]).filter(
+            is_ended=True):
             total_p += total_day_p.total
         try:
             yields_p = round((total_p / sum_p) * 100, 2)
 
         except ZeroDivisionError:
             yields_p = 0
-
 
         total_y = 0
         for total_day_y in FootballType.objects.filter(date_game__year=this_year).filter(is_ended=True):
@@ -136,7 +134,7 @@ class UserLoginView(View):
         ctx = {'form': form}
         return render(
             request,
-            'type_page/index.html',
+            'type_page/base.html',
             ctx
         )
 
@@ -187,8 +185,6 @@ class DrawHistoryView(View):
         except ZeroDivisionError:
             yields = 0
 
-
-
         ctx = {'type': type,
                'sum': sum,
                "total": total,
@@ -201,7 +197,6 @@ class DrawHistoryView(View):
 
 
 class DrawHistoryDayView(View):
-
     def get(self, request, date_url):
         today = date.today()
         date_page = datetime.strptime(date_url, '%Y-%m-%d')
@@ -237,13 +232,13 @@ class DrawHistoryDayView(View):
 
         return render(request, 'type_page/football_type_day_list.html', ctx)
 
-class DrawLastTypesView(View):
 
-    def get(self,request):
+class DrawLastTypesView(View):
+    def get(self, request):
         now = datetime.now()
-        last_types=FootballType.objects.order_by('-id').filter(is_ended=False).filter(date_game__gte=now)
+        last_types = FootballType.objects.order_by('-id').filter(is_ended=False).filter(date_game__gte=now)
         try:
-            last_type=last_types[0]
+            last_type = last_types[0]
             ctx = {"last_type": last_type}
             return render(request, 'type_page/last_added.html', ctx)
         except IndexError:
@@ -251,17 +246,14 @@ class DrawLastTypesView(View):
 
 
 class DrawCurrentlyTypesView(View):
-
-    def get(self,request):
+    def get(self, request):
         now = datetime.now()
-        currently_types=FootballType.objects.filter(is_ended=False).filter(date_game__gte=now)
-        return render(request, 'type_page/currently.html', {"currently_types":currently_types,"now":now})
-
+        currently_types = FootballType.objects.filter(is_ended=False).filter(date_game__gte=now)
+        return render(request, 'type_page/currently.html', {"currently_types": currently_types, "now": now})
 
 
 class DrawUnresolvedTypesView(View):
-
-    def get(self,request):
+    def get(self, request):
         now = datetime.now()
         unresolved_types = FootballType.objects.filter(is_ended=False).filter(date_game__lte=now)
-        return render(request, 'type_page/unresolved.html', {"unresolved_types": unresolved_types,"now":now})
+        return render(request, 'type_page/unresolved.html', {"unresolved_types": unresolved_types, "now": now})
