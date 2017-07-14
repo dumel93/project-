@@ -1,99 +1,107 @@
 {% extends 'type_page/base.html' %}
 
 
-
 {% block login %}
 
 
-    <form action="{% url 'login' %}" method="POST">{% csrf_token %}
+<form action="{% url 'login' %}" method="POST">{% csrf_token %}
 
-        {{ form }}
-                   <input type="submit" class ="btn btn-warning btn-sm" value="LOGIN">
-    </form>
+    {{ form }}
+    <input type="submit" class="btn btn-warning btn-sm" value="LOGIN">
+</form>
 
 {% endblock %}
 
 
 {% block user %}
 On our website we already have  <b><big>{{ users }}</big></b> users.
-                Do not waste your time. Join to us.
+Do not waste your time. Join to us.
 {% endblock %}
-
 
 
 {% block draw %}
 
-    <p style="font-size:25px"> FOOTBALL DRAWS STATS :</p>
+<p style="font-size:25px"> FOOTBALL DRAWS STATS :</p>
 
 
-    {% if total_t >= 0 %}
+{% if total_t >= 0 %}
 
-    <br>
-    <div class="month_won" ><strong>{{ month }} {{ this_year }}</strong><br>
-        Accuracy:<span class="m"> <strong> {{ accuracy|floatformat:"1" }} %</strong> </span>
-            (<small> {{ draws_ok_t }} / {{ draws_t }} </small>)<br>
-    <span class="total_won">Won:</span> <span class="sum_t"> {{ total_t }} units</span>
-        <span style="color:yellowgreen"> / {{ yields_t }} %</span></div>
 <br>
-    {% endif %}
+<div class="month_won"><strong>{{ month }} {{ this_year }}</strong><br>
+    Accuracy:<span class="m"> <strong> {{ accuracy|floatformat:"1" }} %</strong> </span>
+    (
+    <small> {{ draws_ok_t }} / {{ draws_t }}</small>
+    )<br>
+    <span class="total_won">Won:</span> <span class="sum_t"> {{ total_t }} units</span>
+    <span style="color:yellowgreen"> / {{ yields_t }} %</span></div>
+<br>
+{% endif %}
 
-    {% if  total_t  < 0 %}
+{% if  total_t  < 0 %}
 
-    <br>
-    <div class="month_lost" ><strong>{{ month }} {{ this_year }}</strong><br>
-        Accuracy:<span class="m"> <strong> {{ accuracy|floatformat:"1" }} %</strong> </span>
-            (<small> {{ draws_ok_t }} / {{ draws_t }} </small>)<br>
+<br>
+<div class="month_lost"><strong>{{ month }} {{ this_year }}</strong><br>
+    Accuracy:<span class="m"> <strong> {{ accuracy|floatformat:"1" }} %</strong> </span>
+    (
+    <small> {{ draws_ok_t }} / {{ draws_t }}</small>
+    )<br>
     <span class="total_lost">LOST:</span> <span class="sum_t"> {{ total_t }} units</span>
-        <span style="color:darkred"> / {{ yields_t }} %</span></div>
-    </div> <br>
+    <span style="color:darkred"> / {{ yields_t }} %</span></div>
+</div> <br>
 
-    {% endif %}
+{% endif %}
 
 
-    {% if total_p  >= 0 %}
+{% if total_p  >= 0 %}
 
-    <div class="prev_month_won" ><strong>{{ prev_month_name }} {{ this_year }}</strong><br>
+<div class="prev_month_won"><strong>{{ prev_month_name }} {{ this_year }}</strong><br>
     Accuracy:<span class="pm"> <strong> {{ accuracy_p|floatformat:"1" }} %</strong></span>
-            (<small> {{ draws_ok_p }} / {{ draws_p }} </small>)<br>
-        <span class="total_won">Won:</span> {{ total_p }} units
-         <span style="color:yellowgreen"> / {{ yields_p }} %</span></div>
-    <br><br>
+    (
+    <small> {{ draws_ok_p }} / {{ draws_p }}</small>
+    )<br>
+    <span class="total_won">Won:</span> {{ total_p }} units
+    <span style="color:yellowgreen"> / {{ yields_p }} %</span></div>
+<br><br>
 
-    {% endif %}
+{% endif %}
 
 
-
-    {% if total_p  < 0 %}
-    <div class="prev_month_lost" ><strong>{{ prev_month_name }} {{ this_year }}</strong><br>
+{% if total_p  < 0 %}
+<div class="prev_month_lost"><strong>{{ prev_month_name }} {{ this_year }}</strong><br>
     Accuracy:<span class="pm"> <strong> {{ accuracy_p|floatformat:"1" }} %</strong></span>
-            (<small> {{ draws_ok_p }} / {{ draws_p }} </small>)<br>
-        <span class="total_lost">LOST:</span> {{ total_p }} units
-        <span style="color:darkred"> / {{ yields_p }} %</span></div>
-    <br><br>
-    {% endif %}
+    (
+    <small> {{ draws_ok_p }} / {{ draws_p }}</small>
+    )<br>
+    <span class="total_lost">LOST:</span> {{ total_p }} units
+    <span style="color:darkred"> / {{ yields_p }} %</span></div>
+<br><br>
+{% endif %}
 
 
-    {% if  total_y >= 0 %}
+{% if  total_y >= 0 %}
 
-    <div class="year_won" ><strong>{{ this_year }}</strong><br>
+<div class="year_won"><strong>{{ this_year }}</strong><br>
     Accuracy:<span class="y"><strong> {{ accuracy_y|floatformat:"1" }} %</strong></span>
-        (<small> {{ draws_ok_y }} / {{ draws_y }} </small>)<br>
+    (
+    <small> {{ draws_ok_y }} / {{ draws_y }}</small>
+    )<br>
     <span class="total_won">Won:</span> {{ total_y }} units
-        <span style="color:yellowgreen"> / {{ yields_y }} %</span></div>
-    </div><br>
+    <span style="color:yellowgreen"> / {{ yields_y }} %</span></div>
+</div><br>
 
-    {% endif %}
+{% endif %}
 
 
-    {% if  total_y  < 0 %}
-    <div class="year_lost" ><strong>{{ this_year }}</strong><br>
+{% if  total_y  < 0 %}
+<div class="year_lost"><strong>{{ this_year }}</strong><br>
     Accuracy:<span class="y"><strong> {{ accuracy_y|floatformat:"1" }} %</strong></span>
-        (<small> {{ draws_ok_y }} / {{ draws_y }} </small>)<br>
+    (
+    <small> {{ draws_ok_y }} / {{ draws_y }}</small>
+    )<br>
     <span class="total_lost">LOST:</span> {{ total_y }} units
-        <span style="color:darkred"> / {{ yields_y }} %</span></div>
-    </div><br>
-    {% endif %}
-
+    <span style="color:darkred"> / {{ yields_y }} %</span></div>
+</div><br>
+{% endif %}
 
 
 {% endblock %}

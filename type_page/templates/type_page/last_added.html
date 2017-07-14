@@ -23,7 +23,14 @@
                 <div>Predicted won: {{ last_type.total }} units </div>
                       {% if last_type.comments %}  {{last_type.comments}}  {% endif %}
             </div>
+        <br><br>
 
+                  <div class="col-md-offset-2" >
 
+            <a  href="{% url 'last-added' %}" class ="btn btn-warning btn-lg"> LAST ADDED  </a>
+            <a  href="{% url 'currently' %}"  class ="btn btn-warning btn-lg"> UPCOMMING </a>
+            <a  href="{% url 'unresolved' %}" class ="btn btn-warning btn-lg", style="width:120px">    LIVE   </a>
+            <a  href="{% url 'draw-history' %}" class ="btn btn-warning btn-lg "> ARCHIVES </a>
 
+            </div>
 {% endblock %}

@@ -1,6 +1,9 @@
 {% extends 'type_page/base.html' %}
 
 {% block football %}
+
+
+
 <div class="date">
     <h1>HISTORY</h1><br><strong> {{ date_page }} </strong><br><br>
 </div>
@@ -97,12 +100,14 @@
     {% endif %}
 <br>
 
+<br>
 
-<br><br>
 <a href="{% url 'draw-by-day-history' date_url=prev %}" class="btn-default" ><<<<<-  {{ prev }}</a>
 
 
     <a href="{% url 'draw-by-day-history' date_url=next %}" class="btn-default ">{{ next }}   ->>>>></a>
+
+<br><br><br>
 
 
 {% endblock %}
